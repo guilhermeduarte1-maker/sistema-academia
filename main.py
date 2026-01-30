@@ -24,6 +24,7 @@ def main():
 
         escolha = input("Escolha uma opção: ")
 
+        #essa funcao lista os alunos cadastrados
         if escolha == '1':
             nome = input("\nNome do aluno: ")
             plano = input("Plano (Mensal/Trimestral/Anual): ")
@@ -31,7 +32,8 @@ def main():
             lib.adicionar_aluno(alunos, nome, plano, vencimento)
             lib.escrever_csv(alunos, arquivo_alunos, ['Nome', 'Plano', 'Vencimento'])
             console.print(f"[green]Aluno '{nome}' cadastrado com sucesso![/green]")
-
+        
+        #essa funcao lista os alunos cadastrados
         elif escolha == '2':
             console.print("\n[bold green]Alunos cadastrados:[/bold green]")
             lista = lib.listar(alunos)
@@ -40,7 +42,8 @@ def main():
             else:
                 for i, aluno in enumerate(lista, start=1):
                     console.print(f"[cyan]{i}.[/cyan] {aluno[0]} - {aluno[1]} (Vencimento: [yellow]{aluno[2]}[/yellow])")
-
+                    
+        #essa funcao cadastra treinos para os alunos ja cadastrados
         elif escolha == '3':
             aluno = input("\nNome do aluno: ")
             lista = lib.consultar_aluno(alunos, aluno)
@@ -54,6 +57,7 @@ def main():
             lib.escrever_csv(treinos, arquivo_treinos, ['Aluno', 'Exercício', 'Séries', 'Repetições'])
             console.print(f"[green]Treino para '{aluno}' cadastrado com sucesso![/green]")
 
+        #essa funcao lista os treinos cadastrados
         elif escolha == '4':
             console.print("\n[bold green]Treinos cadastrados:[/bold green]")
             lista = lib.listar_treinos(treinos)
@@ -63,6 +67,7 @@ def main():
             for i, treino in enumerate(lista, start=1):
                 console.print(f"[cyan]{i}.[/cyan] {treino[0]} - {treino[1]} ([yellow]{treino[2]} séries[/yellow] de [yellow]{treino[3]} repetições[/yellow])")
 
+        #essa funcao consulta os treinos de um aluno especifico
         elif escolha == '5':
             aluno = input("\nNome do aluno: ")
             lista = lib.consultar_treinos(treinos, aluno)
@@ -73,6 +78,7 @@ def main():
                 for treino in lista:
                     console.print(f"- {treino[1]} ([yellow]{treino[2]} séries[/yellow] de [yellow]{treino[3]} repetições[/yellow])")
 
+        #essa funcao altera as series e repeticoes de um treino ja cadastrado
         elif escolha == '6':
             aluno = input("\nNome do aluno: ")
             exercicio = input("Exercício a alterar séries e repetições: ")
@@ -84,6 +90,7 @@ def main():
             else:
                 console.print("[red]Treino não encontrado.[/red]")
 
+        #essa funcao exclui um treino cadastrado
         elif escolha == '7':
             aluno = input("\nNome do aluno: ")
             exercicio = input("Exercício a excluir: ")
@@ -93,6 +100,7 @@ def main():
             else:
                 console.print("[red]Treino não encontrado.[/red]")
 
+        #essa funcao remove um aluno cadastrado
         elif escolha == '8':
             nome = input("\nNome do aluno a remover: ")
             if lib.remover_aluno(alunos, nome):
@@ -101,6 +109,7 @@ def main():
             else:
                 console.print("[red]Aluno não encontrado.[/red]")
 
+        #essa funcao encerra o programa
         elif escolha == '9':
             console.print("[bold red]\nSaindo do sistema... Até breve![/bold red]")
             break
